@@ -1,0 +1,28 @@
+import sys
+from PyQt5.QtWidgets import *
+
+class MainWindow(QMainWindow):
+    def __init__ (self):
+        super(MainWindow,self).__init__()
+        self.resize(300,50)
+        MainWidget = QWidget()
+        Layout = QFormLayout()
+        MainWidget.setLayout(Layout)
+        self.setCentralWidget(MainWidget)
+        self.userLineEdit = QLineEdit()
+        self.PassLineEdit = QLineEdit()
+        self.PassLineEdit.setEchoMode(QLineEdit.Password)
+        self.submitButton = QPushButton("cancel")
+        self.cancelButton = QPushButton("submit")
+        Layout.addRow(QLabel("Username: "),self.userLineEdit)
+        Layout.addRow(QLabel("Password: "),self.PassLineEdit)
+        Layout.addRow(self.submitButton, self.cancelButton)
+        
+        
+        
+if __name__ == '__main__': 
+   app = QApplication(sys.argv)
+   main = MainWindow()
+   main.show()
+   app.exec()
+        
