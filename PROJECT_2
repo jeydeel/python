@@ -1,0 +1,38 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QFormLayout, QLineEdit, QPushButton, QLabel
+
+# Dictionary for Username and Password
+details = {"NJDS":"09032004","Joy":"joy12345"}
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super(MainWindow,self).__init__()
+        self.resize(350,150)
+        MainWidget = QWidget()
+        layout = QFormLayout()
+        MainWidget.setLayout(layout)
+        self.setCentralWidget(MainWidget)
+        self.userLineEdit = QLineEdit()
+        self.passLineEdit = QLineEdit()
+        self.submitButton = QPushButton("Submit")
+        self.cancelButton = QPushButton("Cancel")
+        layout.addRow(QLabel("Username"),self.userLineEdit)
+        layout.addRow(QLabel("Password"),self.passLineEdit)
+        layout.addRow(self.submitButton,self.cancelButton)
+        
+        self.submitButton.clicked.connect(self.submit)
+
+    def submit(self):
+        name = self.userLineEdit.text()
+        password = self.passLineEdit.text()
+        if name in details.keys() and password == details[name]:
+            print("Access Granted")
+        else:
+            print("Incorrect Username or Password")
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    main = MainWindow()
+    main.show()
+    app.exec()
